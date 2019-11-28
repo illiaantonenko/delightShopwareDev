@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<plugin>
+<label lang="de">Optimierte Staffelpreise / Summe in Detailansicht</label>
+<label lang="en">Optimized quantity discounts and total display</label>
+<version>1.6.4</version>
+<compatibility minVersion="5.2.0" />
+<license>proprietary</license>
+<author>Maxi Arnicke</author>
+<copyright>(c) 2018 Maxi Arnicke</copyright>
+<link>https://metaroom.net/</link>
+<changelog version="1.6.4">
+    <changes lang="de">
+        - Für die Mengeneingabe im Warenkorb kann jetzt zwischen zwei verschiedenen Bestätigungsmethoden gewählt werden (Button, Timeout)
+        - Bugfix: Option "Schriftgröße - 'ab'-Menge" bezieht sich jetzt auch auf die Verpackungseinheit, falls eingeblendet
+        - Smarty-Blocks für Mengen und Verpackungseinheit hinzugefügt
+    </changes>
+    <changes lang="en">
+        - The quantity input in the shopping cart can now use two different confirmation methods (button, timeout)
+        - Added smarty blocks for quantities and packaging unit
+        - Bugfix: Option "Font size - 'from' quantity" now also refers to the packaging unit, if displayed
+    </changes>
+</changelog>
+<changelog version="1.6.3">
+    <changes lang="de">
+        - Neu: Aussehen der Mengenauswahl kann jetzt angepasst werden
+        - Bugfix: Summen-Popup wird nun ausgeblendet, wenn die Mengenauswahl nicht vorhanden oder nicht sichtbar ist
+        - Bugfix: Option 'Aussehen > Schriftgröße - zweite Zeile' hat nicht funktioniert
+        - Neu: ID der Mengenauswahl lässt sich jetzt optional über eine Variable festlegen
+        - Neu: Smarty-Blocks zum Ändern der Attribute hinzugefügt (block_prices.tpl, number_input.tpl, total_display.tpl)
+    </changes>
+    <changes lang="en">
+        - New: Appearance of the quantity selection can now be adjusted
+        - Bugfix: Sum popup is now hidden if the quantity selection is not available or not visible
+        - Bugfix: option 'Appearance > Font size - second line' did not work
+        - New: ID of the quantity selection can now optionally be defined via a variable
+        - New: Added Smarty blocks to change attributes (block_prices.tpl, number_input.tpl, total_display.tpl)
+    </changes>
+</changelog>
+<changelog version="1.6.2">
+    <changes lang="de">
+        - Bugfix: Der aktuelle Preis wurde ohne Nachkommastellen angezeigt, wenn der Preis ganzzahlig ist
+    </changes>
+    <changes lang="en">
+        - Bugfix: The current price was displayed without decimal places if the price is an integer
+    </changes>
+</changelog>
+<changelog version="1.6.1">
+    <changes lang="de">
+        - Bugfix: Template-Fehlermeldung seit letztem Update behoben
+    </changes>
+    <changes lang="en">
+        - Bugfix: Template error message since last update fixed
+    </changes>
+</changelog>
+<changelog version="1.6.0">
+    <changes lang="de">
+        Neu:
+        - Der derzeit aktive Preis kann jetzt über der Tabelle angezeigt werden
+        - Die Tabelle kann jetzt optional unter dem Warenkorb-Button angezeigt werden
+        - Die Hervorhebung des aktiven Preises innerhalb der Tabelle kann jetzt optional deaktiviert werden
+        - Weitere Theme-Einstellungen hinzugefügt: Farbe des Rabatt-Badges, Schriftfarbe in Popups
+    </changes>
+    <changes lang="en">
+        New:
+        - The currently active price can now be displayed above the table
+        - The table can now optionally be displayed under the shopping cart button
+        - The highlighting of the active price within the table can now optionally be deactivated
+        - Added more theme settings: discount badge font color, popup font color
+    </changes>
+</changelog>
+<changelog version="1.5.2">
+    <changes lang="de">
+        - Neu: Die Gesamtsumme kann jetzt als Popup angezeigt werden (optional)
+        - Neu: Es kann jetzt ein Popup-Hinweis für die Mindest-/Maximalabnahmemenge angezeigt werden (optional, nur mit Mengenauswahl als Textfeld)
+        - Bugfix: Grundpreise können jetzt entweder mit Fallback oder ohne Fallback angezeigt werden
+    </changes>
+    <changes lang="en">
+        - New: The total can now be displayed as a popup (optional)
+        - New: Popup hint for minimum / maximum purchase quantity can now be displayed (optional, only with quantity selection as text field)
+        - Bugfix: Basic prices can now be displayed either with fallback or without fallback
+    </changes>
+</changelog>
+<changelog version="1.5.1">
+    <changes lang="de">
+        - Behebt Probleme mit anderen Plugins, welche auf das change-Event vom Mengenauswahl-Textfeld reagieren
+    </changes>
+    <changes lang="en">
+        - Fixes compatibility issues with other plugins that respond to the change event of the quantity text box
+    </changes>
+</changelog>
+<changelog version="1.5.0">
+    <changes lang="de">
+        - Die Höhe der Tabelle kann jetzt begrenzt werden - bei Überschreitung der Maximalhöhe kann innerhalb der Tabelle gescrollt werden
+        - Alternatives Theme für die Mengenauswahl hinzugefügt
+        - Aussehen der Tabelle kann jetzt in den Plugin-Einstellungen angepasst werden
+        - Bugfix: Mengenauswahl-Textfeld wurde in Firefox falsch dargestellt
+        - Bugfix: Mengenauswahl-Textfeld wird jetzt auch in der Mobilversion im Warenkorb angezeigt
+    </changes>
+    <changes lang="en">
+        - The height of the table can now be limited - if the maximum height is exceeded, scrolling within the table is possible
+        - Added alternative theme for quantity selection
+        - Appearance of the table can now be adjusted in the plugin settings
+        - Bugfix: Quantity selection text box was displayed incorrectly in Firefox
+        - Bugfix: Quantity selection text box is now also displayed in the mobile version in the shopping cart
+    </changes>
+</changelog>
+<changelog version="1.4.7">
+    <changes lang="de">
+        - Bugfix: Möglichen 500er-Fehler beim Aufruf von inaktiven Produkten behoben
+        - Verbesserte Behandlung von Ausnahmefehlern im Frontend und während der Installation
+    </changes>
+    <changes lang="en">
+        - Bugfix: Fixed 500 error when viewing inactive products
+        - Improved handling of exception errors in the frontend and during installation
+    </changes>
+</changelog>
+<changelog version="1.4.6">
+    <changes lang="de">
+        - Bugfix: Staffelpreise und Summe werden jetzt für LiveShopping-Artikel ausgeblendet
+    </changes>
+    <changes lang="en">
+        - Bugfix: Price table and total are now hidden for LiveShopping articles
+    </changes>
+</changelog>
+<changelog version="1.4.5">
+    <changes lang="de">
+        - Neu: Steuer-/Versandkosten-Info kann jetzt unterhalb der Summe angezeigt werden (optional)
+    </changes>
+    <changes lang="en">
+        - New: Tax / Shipping Info can now be displayed below the total (optional)
+    </changes>
+</changelog>
+<changelog version="1.4.4">
+    <changes lang="de">
+        - Bugfix: Fehler bzgl. Summenberechnung nach Variantenwechsel behoben
+    </changes>
+    <changes lang="en">
+        - Bugfix: Fixed bug regarding totals calculation after variant change
+    </changes>
+</changelog>
+<changelog version="1.4.3">
+    <changes lang="de">
+        - Bugfix: Rundungsfehler in Prozentrabatten behoben
+    </changes>
+    <changes lang="en">
+        - Bugfix: Rounding error regarding percentage discount fixed
+    </changes>
+</changelog>
+<changelog version="1.4.2">
+    <changes lang="de">
+        - Neu: Verbesserte Rich Snippets für Staffelpreise hinzugefügt
+    </changes>
+    <changes lang="en">
+        - New: Added improved rich snippets for graduated prices
+    </changes>
+</changelog>
+<changelog version="1.4.1">
+    <changes lang="de">
+        - Neu: Die Gesamtersparnis kann jetzt zusammen mit der Summe angezeigt werden
+        - Neu: 'plugin/mabpNumberInput/onChange'-Event hinzugefügt
+    </changes>
+    <changes lang="en">
+        - New: Total savings can now be displayed along with the total
+        - New: 'plugin/mabpNumberInput/onChange' event added
+    </changes>
+</changelog>
+<changelog version="1.4.0">
+    <changes lang="de">
+        - Neu: Mengenauswahl kann jetzt als Textfeld mit Plus/Minus-Buttons dargestellt werden (Warenkorb und Produktdetailseite)
+        - Geändert: In vielen Templates wurden neue Smarty-Blöcke hinzugefügt
+    </changes>
+    <changes lang="en">
+        - New: Quantity field can now be displayed as a text field with plus / minus buttons (shopping cart and product detail page)
+        - Changed: New Smarty blocks have been added in many templates
+    </changes>
+</changelog>
+<changelog version="1.3.3">
+    <changes lang="de">
+        - Bugfix: Fehlerbehebung bzgl. nicht erkannten Subshop-Einstellungen
+        - Bugfix: Probleme bzgl. Produkt 404-Seite behoben
+    </changes>
+    <changes lang="en">
+        - Bugfix: Troubleshooting regarding unrecognized subshop settings
+        - Bugfix: Problems regarding product 404 page fixed
+    </changes>
+</changelog>
+<changelog version="1.3.2">
+    <changes lang="de">
+        - Bugfix: Nicht verfügbare Preise sind jetzt nicht mehr anklickbar
+        - Bugfix: Minimal-/Maximalabnahme wird jetzt berücksichtigt
+        - Bugfix: Änderungen für die Kompatiblität mit dem Plugin "Artikel Konfigurator für Sets / Bundles"
+        - Neu: JS-Event zum Abfragen der Gesamtsumme hinzugefügt: `plugin/mabpTotalDisplay/onUpdate`
+    </changes>
+    <changes lang="en">
+        - Bugfix: Unavailable prices are no longer clickable
+        - Bugfix: Minimum / maximum acceptance is now taken into account
+        - Bugfix: Changes for the compatibility with the plugin "Article configurator for sets / bundles"
+        - New: JS event added to query the grand total: `plugin/mabpTotalDisplay/onUpdate`
+    </changes>
+</changelog>
+<changelog version="1.3.1">
+    <changes lang="de">
+        - Bugfix: Änderungen bzgl. Custom Products Kompatiblität
+        - Bugfix: Mengenfeld 'change'-Event wird jetzt auch getriggert, wenn die Menge über einen Klick in der Tabelle verändert wird
+        - Neu: Verbesserte Darstellung der Pseudopreise
+    </changes>
+    <changes lang="en">
+        - Bugfix: Changes regarding custom products compatibility
+        - Bugfix: Quantity field 'change' event is now also triggered if the quantity is changed by a click in the table
+        - New: Improved display of pseudo prices
+    </changes>
+</changelog>
+<changelog version="1.3.0">
+    <changes lang="de">
+        - Feature: Die Sortierung der Tabelle kann jetzt festgelegt werden
+        - Bugfix: Transparenz inaktiver Preise kann jetzt deaktiviert werden
+        - Code-Optimierungen
+    </changes>
+    <changes lang="en">
+        - Feature: The sort order of the list can now be adjusted
+        - Bugfix: Transparency of inactive prices can now be deactivated
+        - Bugfix: Code optimizations
+    </changes>
+</changelog>
+<changelog version="1.2.0">
+    <changes lang="de">
+        - Feature: Die Sortierung der Tabelle kann jetzt festgelegt werden
+        - Bugfix: Transparenz inaktiver Preise kann jetzt deaktiviert werden
+        - Code-Optimierungen
+    </changes>
+    <changes lang="en">
+        - Feature: The sort order of the list can now be adjusted
+        - Bugfix: Transparency of inactive prices can now be deactivated
+        - Bugfix: Code optimizations
+    </changes>
+</changelog>
+<changelog version="1.1.1">
+    <changes lang="de">
+        - Bugfix: Pseudopreise können jetzt angezeigt werden
+    </changes>
+    <changes lang="en">
+        - Bugfix: Discount prices can now be displayed
+    </changes>
+</changelog>
+<changelog version="1.1.0">
+    <changes lang="de">
+        - Feature: Kompakteres Layout
+        - Bugfix: Erste Staffel wird jetzt standartmäßig mit 'ab' gekennzeichnet
+        - Feature: Anpassung der Stückzahl per Klick kann nun optional deaktiviert werden
+        - Feature: Summe basierend auf ausgewählter Stückzahl kann jetzt angezeigt werden (optional)
+    </changes>
+    <changes lang="en">
+        - Feature: More compact layout
+        - Bugfix: First price is now marked with 'from' by default
+        - Feature: Adjustment of the number of pieces per click can now be optionally deactivated
+        - Feature: Total based on selected quantity can now be displayed (optional)
+    </changes>
+</changelog>
+<changelog version="1.0.0">
+    <changes lang="de">Veröffentlicht</changes>
+    <changes lang="en">Published</changes>
+</changelog>
+</plugin>

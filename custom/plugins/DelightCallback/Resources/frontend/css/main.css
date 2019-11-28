@@ -1,0 +1,95 @@
+#callback-btn {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
+    background-color: #f1551f;
+    border-radius: 50%;
+    z-index: 99999;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px 17px 15px 17px;
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 99999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-body {
+    background-color: #fefefe;
+    position: relative;
+    margin: 15% auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-header {
+    margin: 0 0 20px;
+    padding: 15px;
+    /* border: solid #736f6fba 1.5px; */
+    background: #b5b4b4;
+    color: #ffffff;
+}
+
+.modal-content {
+    padding: 0 15px 0 15px;
+    margin: 15px;
+}
+
+.modal-content button {
+    padding: 7px 20px 7px 20px;
+    background-color: #f1551f;
+    color: #fff;
+    border: solid #a9a4a4 0.5px;
+    border-radius: 2px;
+}
+
+.modal-content form label {
+    width: 100%;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.modal-content form label input {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* The Close Button */
+.close {
+    color: #fff;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.callback-message {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+}

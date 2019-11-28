@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    <label lang="de">itDelightManufacturerList</label>
+    <label lang="en">itDelightManufacturerList</label>
+    <version>1.0.0</version>
+    <link>https://www.itdelight.com/</link>
+    <author>itDelight</author>
+    <description>
+        <![CDATA[
+        <h1>Manufacturer list</h1>
+        <ul>
+            <li>
+            Custom Shopping world
+            </li>
+            <li>
+            List of manufacturers
+            </li>
+            </ul>
+        ]]>
+    </description>
+</plugin>

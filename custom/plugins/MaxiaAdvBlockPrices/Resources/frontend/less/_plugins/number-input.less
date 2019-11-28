@@ -1,0 +1,102 @@
+.mabp-number-input {
+  display: flex;
+  align-items: center;
+  .unitize(height, @mabp-number-input-height);
+  .unitize(min-width, 50);
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .mabp--popup {
+    .unitize(width, 225);
+    .unitize(margin-top, 0);
+  }
+}
+
+.mabp-number-input--field {
+  flex-grow: 1;
+  width: 100% !important;
+  display: block;
+  text-align: center !important;
+  min-width: 0;
+  .unitize(height, @mabp-number-input-height);
+}
+
+.mabp-number-input--button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  .unitize(height, @mabp-number-input-button-size);
+  .unitize(min-width, @mabp-number-input-button-size);
+  .unitize(font-size, 20);
+  .border-radius(@mabp-border-radius);
+  border: 1px solid @border-color;
+  box-sizing: border-box;
+  outline: none;
+
+  &.plus-button {
+    .unitize(margin-left, 6);
+  }
+
+  &.minus-button {
+    .unitize(margin-right, 6);
+  }
+
+  &:active {
+    background: @gray-light;
+  }
+
+  &.js--disabled {
+    cursor: not-allowed;
+    opacity: .75;
+
+    &:hover, &:active { background: inherit; }
+  }
+}
+
+/**
+ * Minimal theme
+ */
+.mabp-number-input.is--minimal {
+  background: @input-focus-bg;
+
+  .mabp-number-input--button {
+    .unitize(height, @mabp-number-input-height);
+    .unitize(min-width, @mabp-number-input-button-size-minimal);
+    border-color: @mabp-number-input-minimal-border-color;
+    background: transparent;
+    color: @mabp-number-input-minimal-color;
+
+    .unitize(font-size, 18);
+
+    &.minus-button {
+      margin-right: 0;
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &.plus-button {
+      margin-left: 0;
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .mabp-number-input--field {
+    border-radius: 0;
+    border-right: 0;
+    border-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-color: @mabp-number-input-minimal-border-color;
+    background: transparent;
+    font-weight: bold;
+    color: @mabp-number-input-minimal-color;
+    .box-shadow(none);
+  }
+}

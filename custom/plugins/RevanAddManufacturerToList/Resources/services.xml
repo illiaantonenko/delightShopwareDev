@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="revan_add_manufacturer_to_list.subscribers.frontend_listing_subscriber"
+                 class="RevanAddManufacturerToList\Subscribers\FrontendListingSubscriber">
+            <argument>%revan_add_manufacturer_to_list.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <service id="revan_add_manufacturer_to_list.subscribers.frontend_detail_subscriber"
+                 class="RevanAddManufacturerToList\Subscribers\FrontendDetailSubscriber">
+            <argument>%revan_add_manufacturer_to_list.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+    </services>
+
+</container>

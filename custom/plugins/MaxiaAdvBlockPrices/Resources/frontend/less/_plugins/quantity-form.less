@@ -1,0 +1,97 @@
+/**
+ * Cart quantity form
+ */
+.mabp-quantity-form--wrapper {
+  float: right;
+  .unitize(margin-bottom, 12);
+
+  .btn--change-quantity {
+    position: absolute;
+    display: none;
+    .unitize(height, @mabp-number-input-height);
+    top: 0;
+    .unitize(left, -40);
+    .unitize(margin-right, 5);
+  }
+
+  &.is--active .btn--change-quantity {
+    display: block;
+  }
+
+  .mabp-number-input {
+    .unitize(max-width, 115);
+  }
+
+  .mabp-quantity-form {
+    display: block;
+    position: relative;
+    .unitize(min-width, 110);
+
+    &.is--active {
+      .btn--change-quantity {
+        display: block;
+      }
+    }
+
+    .mabp-number-input--button {
+      display: flex;
+    }
+  }
+}
+
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+
+  .mabp-quantity-form--wrapper {
+    float: left;
+    margin-bottom: 0;
+
+    .btn--change-quantity {
+      .unitize(right, -40);
+      .unitize(margin-left, 5);
+      left: auto;
+      margin-right: 0;
+      top: auto;
+      bottom: 0;
+    }
+
+    .mabp-number-input {
+      .unitize(max-width, 140);
+    }
+  }
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+
+  .mabp-quantity-form--wrapper {
+    float: right;
+
+    .btn--change-quantity {
+      top: 0;
+    }
+  }
+}
+
+@media screen and (min-width: @tabletViewportWidth) and (max-width: @tabletLandscapeViewportWidth) {
+
+
+  .mabp-quantity-form--wrapper {
+
+    .mabp-quantity-form {
+      min-width: auto;
+
+      .btn--change-quantity {
+        top: 0;
+      }
+
+      .mabp-number-input--button {
+        display: none;
+      }
+
+      .mabp-number-input.is--minimal .mabp-number-input--field {
+        .border-radius(@mabp-border-radius);
+        border: 1px solid @input-border;
+      }
+    }
+  }
+}

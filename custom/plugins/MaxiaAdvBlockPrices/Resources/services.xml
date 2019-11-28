@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="maxia.adv_block_prices.config_service"
+                 class="MaxiaAdvBlockPrices\Service\ConfigService">
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="maxia.adv_block_prices.subscriber.assets"
+                 class="MaxiaAdvBlockPrices\Subscriber\Assets">
+            <argument type="service" id="shopware.plugin.config_reader" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <service id="maxia.adv_block_prices.subscriber.frontend"
+                 class="MaxiaAdvBlockPrices\Subscriber\Frontend">
+            <argument type="service" id="service_container" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <service id="maxia.adv_block_prices.struct_converter"
+                 class="MaxiaAdvBlockPrices\Components\StructConverter">
+            <argument type="service" id="maxia.adv_block_prices.config_service" />
+            <argument type="service" id="legacy_struct_converter" />
+            <argument type="service" id="events" />
+        </service>
+    </services>
+</container>
