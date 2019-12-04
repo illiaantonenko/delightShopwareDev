@@ -1,6 +1,6 @@
 <?php
 
-namespace DelightBonusSystem\Subscriber;
+namespace DelightBonusSystem\Subscribers;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Enlight\Event\SubscriberInterface;
@@ -36,7 +36,6 @@ class TemplateRegistration implements SubscriberInterface
         return [
             'Enlight_Controller_Action_PreDispatch' => 'onPreDispatch',
             'Theme_Compiler_Collect_Plugin_Css' => 'onCollectCss',
-            'Theme_Compiler_Collect_Plugin_Javascript' => 'onCollectJavascript',
         ];
     }
 
@@ -59,18 +58,6 @@ class TemplateRegistration implements SubscriberInterface
         return null;
     }
 
-    /**
-     * @return ArrayCollection|null
-     */
-    public function onCollectJavascript()
-    {
-        $files = $this->collectResourceFiles($this->pluginDirectory, 'js');
-        if ($files) {
-            return new ArrayCollection($files);
-        }
-
-        return null;
-    }
 
     /**
      * @param string $baseDir resource base directory

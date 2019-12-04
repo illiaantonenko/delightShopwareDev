@@ -47,7 +47,28 @@ class DelightBonusSystem extends Plugin
             'label' => 'Tokens',
             'supportText' => 'Sum of user\'s bonus tokens',
             'displayInBackend' => true,
-        ]);
+        ],
+            null, false, 0
+        );
+        $service->update('s_order_attributes', 'tokens_accrued', 'boolean', [
+            'label' => 'Is tokens accrued',
+            'supportText' => 'Is tokens accrued to user after order',
+            'displayInBackend' => true,
+        ],
+            null, false, 0
+        );
+        $service->update('s_order_attributes', 'tokens_sum', 'integer', [
+            'label' => 'Tokens sum',
+            'supportText' => 'Tokens sum for user\'s accrual',
+            'displayInBackend' => true,
+        ],
+            null, false, 0
+        );
+        $metaDataCache = $this->container->get('models')->getConfiguration()->getMetadataCacheImpl();
+        $metaDataCache->deleteAll();
+        $this->container->get('models')->generateAttributeModels(['s_user_attributes']);
+        $this->container->get('models')->generateAttributeModels(['s_order_attributes']);
+        $this->container->get('models')->generateAttributeModels(['s_articles_attributes']);
         parent::install($installContext);
     }
 
@@ -66,61 +87,11 @@ class DelightBonusSystem extends Plugin
         $service->delete('s_articles_attributes', 'token_for_purchase');
         $service->delete('s_articles_attributes', 'in_bonus_program');
         $service->delete('s_user_attributes', 'tokens');
+        $service->delete('s_order_attributes', 'tokens_accrued');
+        $service->delete('s_order_attributes', 'tokens_sum');
 //        if (!$uninstallContext->keepUserData()) {
 //            $this->removeDatabase();
 //        }
     }
 
-//    private function createDatabase()
-//    {
-//        /* @var $modelManager ModelManager */
-//        $modelManager = $this->container->get('models');
-//        $tool = new SchemaTool($modelManager);
-//
-//        $classes = $this->getClasses($modelManager);
-//
-//        $tool->updateSchema($classes, true); // make sure to use the save mode
-//    }
-//
-//    private function removeDatabase()
-//    {
-//        /* @var $modelManager ModelManager */
-//        $modelManager = $this->container->get('models');
-//        $tool = new SchemaTool($modelManager);
-//
-//        $classes = $this->getClasses($modelManager);
-//
-//        $tool->dropSchema($classes);
-//    }
-//
-//    /**
-//     * @param ModelManager $modelManager
-//     * @return array
-//     */
-//    private function getClasses(ModelManager $modelManager)
-//    {
-//        return [
-//            $modelManager->getClassMetadata(Callback::class)
-//        ];
-//    }
-//
-//    public static function getSubscribedEvents()
-//    {
-//        return [
-//            'Enlight_Controller_Action_PostDispatchSecure_Backend_DelightCallback' => 'postDispatchRegistration',
-//            'Enlight_Controller_Action_PostDispatchSecure_Backend' => 'onPostDispatchBackend',
-//        ];
-//    }
-//
-//    public function onPostDispatchBackend(\Enlight_Event_EventArgs $args)
-//    {
-//        $args->getSubject()->View()->addTemplateDir(__DIR__.'/Resources/views');
-//    }
-//    public function postDispatchRegistration(\Enlight_Event_EventArgs $args)
-//    {
-//        /* @var Shopware_Controllers_Backend_DelightCallback $subject /
-//         */
-//        $subject = $args->getSubject();
-//            $subject->View()->extendsTemplate('backend/delight_callback/app.js');
-//    }
 }

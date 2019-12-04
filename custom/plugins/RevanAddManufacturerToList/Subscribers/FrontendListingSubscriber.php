@@ -29,8 +29,5 @@ class FrontendListingSubscriber implements \Enlight\Event\SubscriberInterface
         $controller = $args->getSubject();
         $view = $controller->View();
         $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
-//           $view->assign('manufacturer',$article['supplierName']);
-//        error_log(print_r($categoryContent, true));
-//           die(print_r(get_class_vars($controller)));
     }
 }

@@ -2,38 +2,10 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/config.xsd">
     <elements>
-        <element type="text" scope="locale">
-            <name>revanSloganContent</name>
-            <label lang="ua">Ваш слоган!</label>
-            <label lang="en">Your slogan!</label>
-            <description lang="ua">Цей слога буде відображений у сторфронті</description>
-            <description lang="en">This slogan will be shown on the storefront</description>
-        </element>
-        <element type="select" scope="locale">
-            <name>revanSloganFontSize</name>
-            <label lang="ua">Розмір шрифту</label>
-            <label lang="en">Font size</label>
-            <value>12</value>
-            <store>
-                <option>
-                    <value>12</value>
-                    <label>12px</label>
-                </option>
-                <option>
-                    <value>18</value>
-                    <label>18px</label>
-                </option>
-                <option>
-                    <value>24</value>
-                    <label>24px</label>
-                </option>
-            </store>
-        </element>
-        <element type="boolean" scope="locale">
-            <name>revanSloganItalic</name>
-            <label lang="ua">Курсив</label>
-            <label lang="en">Italic</label>
-            <value>false</value>
+        <element type="number" scope="locale">
+            <name>delightTokensHoldTime</name>
+            <label lang="de">Bonus Hold Time</label>
+            <label lang="en">Bonus Hold Time</label>
         </element>
     </elements>
 </config>

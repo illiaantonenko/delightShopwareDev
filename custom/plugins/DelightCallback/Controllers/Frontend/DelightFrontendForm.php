@@ -14,7 +14,6 @@ class Shopware_Controllers_Frontend_DelightFrontendForm extends Enlight_Controll
             'status' => '',
             'message' => ''
         ];
-        print_r($this->Request()->getParams(), 1);
         $callback = new Callback();
         $callback->fromArray([
             'name' => $params['name'],

@@ -2,54 +2,51 @@
 
 namespace DelightBonusSystem\Subscribers;
 
+use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Events;
 use Enlight_Controller_Request_RequestHttp;
+use Shopware\Components\Model\ModelManager;
 use Shopware\Models\Order\Order;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 
-class FrontendSubscriber implements \Enlight\Event\SubscriberInterface
+class BackendSubscriber implements \Enlight\Event\SubscriberInterface
 {
 
     private $pluginDirectory;
+    private $container;
 
-    public function __construct($pluginDirectory)
+    public function __construct($pluginDirectory, $container)
     {
+        error_log('construct');
         $this->pluginDirectory = $pluginDirectory;
+        $this->container = $container;
     }
+
 
     public static function getSubscribedEvents()
     {
-        return [
-            'Enlight_Controller_Action_PostDispatchSecure_Frontend_Listing' => ['onFrontendListing', 600],
-            'Enlight_Controller_Action_PostDispatch_Backend_Order' => 'onDispatchCheckout',
-            'Shopware\Models\Order\Order::preUpdate',
-            'Shopware\Models\Order\Order::postUpdate',
-        ];
+        return array(
+            'Shopware_Controllers_Backend_Order::saveAction::before' => 'saveAction'
+        );
     }
 
-    public function onFrontendListing(\Enlight_Controller_ActionEventArgs $args)
+    public function saveAction(\Enlight_Hook_HookArgs $args)
     {
-        /** @var  $controller */
-        $controller = $args->getSubject();
-        $view = $controller->View();
-        $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
-//           $view->assign('manufacturer',$article['supplierName']);
-//        error_log(print_r($categoryContent, true));
-//           die(print_r(get_class_vars($controller)));
-    }
+        /* @var \Shopware_Controllers_Backend_Order $subject */
+        $subject = $args->getSubject();
 
-    public function onDispatchCheckout(\Enlight_Controller_ActionEventArgs $args)
-    {
-        /** @var $request Enlight_Controller_Request_RequestHttp */
-        $request = $args->getSubject()->Request()->getParams();
-        if ($request['controller'] === 'Order' and $request['action'] === 'save') {
-            $manager = $args->getSubject()->getModelManager();
-            /** @var $order Order */
+        $params = $subject->Request()->getParams();
+        $previousPaymentStatus = $params['paymentStatus'][0]['id'];
 
-            $order = $manager->getRepository(Order::class)->find($request['id']);
-            $status = $order->getOrderStatus();
-//
-            error_log(print_r([$request['status'], [$status->getName(), $status->get]], 1));
+        /* @var Order $currentOrder */
+        $currentOrder = $this->container->get('models')->getRepository(Order::class)->findOneBy(['id' => $params['id']]);
+        $currentPaymentStatus = $currentOrder->getPaymentStatus()->getId();
+
+        $flag = $previousPaymentStatus == $currentPaymentStatus ? true : false;
+        if (!$flag) {
+            /* Your logic */
         }
-//        die('<pre>'.print_r($log,1).'</pre>');
-
     }
 }

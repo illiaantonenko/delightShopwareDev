@@ -18,22 +18,6 @@ Thumbs.db
 /vendor/*
 !/vendor/.htaccess
 
-# User installed plugins
-/engine/Shopware/Plugins/Community/Backend/*
-/engine/Shopware/Plugins/Community/Core/*
-/engine/Shopware/Plugins/Community/Frontend/*
-/engine/Shopware/Plugins/Local/Backend/*
-/engine/Shopware/Plugins/Local/Core/*
-/engine/Shopware/Plugins/Local/Frontend/*
-
-/custom/plugins/*
-
-# User installed themes
-/themes/Frontend/*
-!/themes/Frontend/.eslintrc.js
-!/themes/Frontend/Bare
-!/themes/Frontend/Responsive
-
 # Userconfigurations
 /config.php
 /config_*.php
@@ -96,15 +80,5 @@ phpstan.phar
 # scripts
 !/build/composer-post-install-cmd.sh
 !/build/composer-post-update-cmd.sh
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+
+/custom/plugins/Swag*

@@ -59,9 +59,9 @@ class Enlight_Event_EventManager extends Enlight_Class
     /**
      * $eventManager->addListener('foo.action', array($listener, 'onFooAction'));
      *
-     * @param string   $eventName
+     * @param string $eventName
      * @param callback|array<int, object|string> $listener
-     * @param int      $priority
+     * @param int $priority
      *
      * @return Enlight_Event_EventManager
      */
@@ -102,7 +102,7 @@ class Enlight_Event_EventManager extends Enlight_Class
         $list = &$this->listeners[$eventName];
 
         if ($handler->getPosition()) {
-            $position = (int) $handler->getPosition();
+            $position = (int)$handler->getPosition();
         } else {
             $position = count($list);
         }
@@ -192,15 +192,18 @@ class Enlight_Event_EventManager extends Enlight_Class
      * Before the listener will be executed the the flag "processed" will be set to false in the event arguments.
      * After all event listeners has been executed the "processed" flag will be set to true.
      *
-     * @param string                             $event
+     * @param string $event
      * @param Enlight_Event_EventArgs|array|null $eventArgs
      *
+     * @return Enlight_Event_EventArgs|null
      * @throws Enlight_Event_Exception
      *
-     * @return Enlight_Event_EventArgs|null
      */
     public function notify($event, $eventArgs = null)
     {
+        // START LOG CHANGES
+        file_put_contents('./var/log/events.log', $event . "\n", FILE_APPEND);
+        // END LOG CHANGES
         if (!$this->hasListeners($event)) {
             return null;
         }
@@ -229,12 +232,12 @@ class Enlight_Event_EventManager extends Enlight_Class
      *
      * The event listeners will be executed until one of the listeners return not null.
      *
-     * @param string                             $event
+     * @param string $event
      * @param Enlight_Event_EventArgs|array|null $eventArgs
      *
+     * @return Enlight_Event_EventArgs|null
      * @throws Enlight_Exception
      *
-     * @return Enlight_Event_EventArgs|null
      */
     public function notifyUntil($event, $eventArgs = null)
     {
@@ -273,13 +276,13 @@ class Enlight_Event_EventManager extends Enlight_Class
      *
      * The return value of the execute method will be set in the event arguments return value.
      *
-     * @param string                             $event
-     * @param mixed                              $value
+     * @param string $event
+     * @param mixed $value
      * @param Enlight_Event_EventArgs|array|null $eventArgs
      *
+     * @return mixed
      * @throws Enlight_Event_Exception
      *
-     * @return mixed
      */
     public function filter($event, $value, $eventArgs = null)
     {
@@ -306,13 +309,13 @@ class Enlight_Event_EventManager extends Enlight_Class
      * Event which is fired to collect plugin parameters
      * to register additionally application components or configurations.
      *
-     * @param string          $event
+     * @param string $event
      * @param ArrayCollection $collection
-     * @param array|null      $eventArgs
-     *
-     * @throws Enlight_Event_Exception
+     * @param array|null $eventArgs
      *
      * @return ArrayCollection|null
+     * @throws Enlight_Event_Exception
+     *
      */
     public function collect($event, ArrayCollection $collection, $eventArgs = null)
     {
@@ -386,9 +389,9 @@ class Enlight_Event_EventManager extends Enlight_Class
     /**
      * @param Enlight_Event_EventArgs|array|null $eventArgs
      *
+     * @return Enlight_Event_EventArgs
      * @throws Enlight_Event_Exception
      *
-     * @return Enlight_Event_EventArgs
      */
     private function buildEventArgs($eventArgs = null)
     {

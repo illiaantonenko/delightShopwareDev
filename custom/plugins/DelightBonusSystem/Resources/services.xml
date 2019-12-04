@@ -3,9 +3,21 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="delight_bonus_system.subscriber.templates" class="DelightBonusSystem\Subscriber\TemplateRegistration">
+        <service id="delight_bonus_system.subscribers.templates" class="DelightBonusSystem\Subscribers\TemplateRegistration">
             <argument>%delight_bonus_system.plugin_dir%</argument>
             <argument type="service" id="template"/>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+        <service id="delight_bonus_system.subscribers.backend_subscriber"
+                 class="DelightBonusSystem\Subscribers\BackendSubscriber">
+            <argument>%delight_bonus_system.plugin_dir%</argument>
+            <argument type="service" id="service_container"/>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+        <service id="delight_bonus_system.subscribers.backend_subscriber"
+                 class="DelightBonusSystem\Subscribers\CronJobSubscriber">
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="shopware.plugin.cached_config_reader"/>
             <tag name="shopware.event_subscriber"/>
         </service>
     </services>

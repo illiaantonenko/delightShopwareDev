@@ -1,56 +1,63 @@
 <?php
 
-namespace RevanCronJobs\Subscribers;
+namespace DelightBonusSystem\Subscribers;
 
-use Shopware\Models\Article\Article;
+use DateTime;
+use Enlight\Event\SubscriberInterface;
+use Shopware\Components\Model\ModelManager;
+use Shopware\Components\Plugin\ConfigReader;
+use Shopware\Models\Customer\Customer;
+use Shopware\Models\Order\Order;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class CronJobSubscriber implements \Enlight\Event\SubscriberInterface
+class CronJobSubscriber implements SubscriberInterface
 {
 
-    private $pluginDirectory;
     private $container;
+    private $config;
 
-    public function __construct($pluginDirectory, ContainerInterface $container)
+    public function __construct(ContainerInterface $container, ConfigReader $configReader)
     {
-        $this->pluginDirectory = $pluginDirectory;
         $this->container = $container;
+        $this->config = $configReader;
     }
 
     public static function getSubscribedEvents()
     {
         return [
-            'Shopware_CronJob_ExportProducts' => 'onExportProductsCronJob',
-            'Enlight_Controller_Action_PostDispatchSecure_Frontend_CronJob' => 'postDispatchRegistration'
+            'Shopware_CronJob_CheckTokensActuality' => 'onCheckTokensActuality',
         ];
     }
 
-    public function onExportProductsCronJob(\Shopware_Components_Cron_CronJob $job)
+    public function onCheckTokensActuality(\Shopware_Components_Cron_CronJob $job)
     {
-        /** @var  $controller */
-//        $controller = $args->getSubject();
-        $models = $this->container->get('models');
-        $articles = $models->getRepository(Article::class)->findAll();
-        $dir = '/../../../exportedFiles';
-        /** @var Article $article */
-        if (!file_exists($this->pluginDirectory . '/../../../ITDelight')) {
-            mkdir($this->pluginDirectory . '/../../../ITDelight', 0755, true);
-            if (!file_exists($this->pluginDirectory . '/../../../ITDelight/exportedFiles')) {
-                mkdir($this->pluginDirectory . '/../../../ITDelight/exportedFiles', 0755, true);
+        /**
+         * @var $modelManager ModelManager
+         * @var $order Order
+         * @var $customer Customer
+         */
+        $modelManager = $this->container->get('models');
+        $orders = $modelManager->getRepository(Order::class)->findAll();
+
+        foreach ($orders as $order) {
+            echo $order->getId();
+            if (!$order->getTokensAccrued()) {
+                $nowDate = new DateTime();
+                if ($nowDate->diff($order->getClearedDate())['d'] > $this->config['delightTokensHoldTime']) {
+                    $sumTokens = 0;
+                    foreach ($order->getDetails() as $detail) {
+                        $sumTokens += $detail->getInBonusProgram() ? round($detail->getCostInToken(), 2) : 0;
+                    }
+                    $customer = $order->getCustomer();
+                    $customer->setTokens($customer->getTokens() + $sumTokens);
+                    $order->setTokensAccrued(1);
+                    $order->setTokensSum($sumTokens);
+                    $modelManager->persist($customer);
+                    $modelManager->persist($order);
+                    $modelManager->flush();
+                }
             }
         }
-        $fp = fopen($this->pluginDirectory . '/../../../ITDelight/exportedFiles' . '/text_' . date('d_m_Y:H_i_s') . '.csv', 'w');
-        foreach ($articles as $article) {
-            if ($article->getMainDetail()->getAttribute()->getIsExported()) {
-                fputcsv($fp, [
-                    'id' => $article->getId(),
-                    'name' => $article->getName(),
-                    'active' => $article->getActive(),
-                    'description' => $article->getDescription()
-                ]);
-            }
-        }
-        fclose($fp);
     }
 
 }
