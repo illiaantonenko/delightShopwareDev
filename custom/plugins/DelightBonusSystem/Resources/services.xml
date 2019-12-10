@@ -14,8 +14,9 @@
             <argument type="service" id="service_container"/>
             <tag name="shopware.event_subscriber"/>
         </service>
-        <service id="delight_bonus_system.subscribers.backend_subscriber"
+        <service id="delight_bonus_system.subscribers.cron_job_subscriber"
                  class="DelightBonusSystem\Subscribers\CronJobSubscriber">
+            <argument>%delight_bonus_system.plugin_name%</argument>
             <argument type="service" id="service_container"/>
             <argument type="service" id="shopware.plugin.cached_config_reader"/>
             <tag name="shopware.event_subscriber"/>

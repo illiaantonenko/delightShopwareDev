@@ -68,6 +68,7 @@ class DelightBonusSystem extends Plugin
         $metaDataCache->deleteAll();
         $this->container->get('models')->generateAttributeModels(['s_user_attributes']);
         $this->container->get('models')->generateAttributeModels(['s_order_attributes']);
+        $this->container->get('models')->generateAttributeModels(['s_order_details_attributes']);
         $this->container->get('models')->generateAttributeModels(['s_articles_attributes']);
         parent::install($installContext);
     }

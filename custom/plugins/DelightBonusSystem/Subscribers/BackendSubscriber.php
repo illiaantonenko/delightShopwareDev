@@ -43,7 +43,6 @@ class BackendSubscriber implements \Enlight\Event\SubscriberInterface
         /* @var Order $currentOrder */
         $currentOrder = $this->container->get('models')->getRepository(Order::class)->findOneBy(['id' => $params['id']]);
         $currentPaymentStatus = $currentOrder->getPaymentStatus()->getId();
-
         $flag = $previousPaymentStatus == $currentPaymentStatus ? true : false;
         if (!$flag) {
             /* Your logic */
